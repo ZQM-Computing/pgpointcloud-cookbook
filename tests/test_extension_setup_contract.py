@@ -24,6 +24,17 @@ class ExtensionSetupContractTests(unittest.TestCase):
         self.assertNotIn("PGPASSWORD", script)
         self.assertIn("Authentication is delegated to libpq", script)
 
+    def test_readme_inventory_marks_unimplemented_patterns_as_planned(self):
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        section = readme.split("## Patterns", 1)[1].split("## Repository layout", 1)[0]
+        self.assertIn("Only `examples/01-extension-setup/` currently exists", section)
+        for pattern in ("02-pdal-ingest", "03-patch-queries", "04-full-workflow"):
+            with self.subTest(pattern=pattern):
+                row = next(line for line in section.splitlines() if pattern in line)
+                self.assertIn("| Planned |", row)
+                directory = ROOT / "examples" / pattern
+                self.assertFalse(directory.exists())
+
     def test_sql_checks_both_required_extensions_and_reports_versions(self):
         sql = (EXAMPLE / "verify-extensions.sql").read_text(encoding="utf-8").lower()
         self.assertIn("('postgis'), ('pointcloud')", sql)
