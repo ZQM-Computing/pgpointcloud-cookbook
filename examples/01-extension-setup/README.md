@@ -13,10 +13,10 @@ This pattern checks that the target PostgreSQL database can load PostGIS and pgP
 Set `PGHOST`, `PGPORT`, `PGDATABASE`, `PGUSER`, and authentication through your normal PostgreSQL credential mechanism (for example, `PGPASSFILE`). Then run:
 
 ```bash
-psql -X -v ON_ERROR_STOP=1 -f examples/01-extension-setup/verify-extensions.sql
+bash examples/01-extension-setup/verify.sh
 ```
 
-The query fails if either extension is absent and prints the exact installed versions otherwise. It is intentionally a verification script, not an automatic privileged extension installer. Extension installation and upgrades should follow the database administrator's change process.
+The runner checks that `psql` and the SQL fixture exist, requires `PGHOST`, `PGDATABASE`, and `PGUSER`, and invokes `psql` with startup-file loading disabled and `ON_ERROR_STOP` enabled. Supply authentication through libpq's normal mechanism (prefer `PGPASSFILE` or managed secret injection); the runner never prints passwords or installs extensions. The SQL fails if either extension is absent and reports exact installed versions otherwise. Extension installation and upgrades should follow the database administrator's change process.
 
 ## Validation boundary
 
