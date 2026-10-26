@@ -16,6 +16,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+      - name: Validate shell syntax
+        run: bash -n examples/01-extension-setup/verify.sh
       - name: Compile tests
         run: python -m compileall -q tests
       - name: Run SQL and documentation contracts
