@@ -38,9 +38,11 @@ Engineers who store LiDAR in Postgres and query it as patches.
 | # | Example | Status | What it demonstrates |
 |---|---------|--------|---------------------|
 | 01 | [01-extension-setup](examples/01-extension-setup/README.md) | Written; live DB check required | Verify PostGIS and pgPointCloud are installed and report their exact versions |
-| 02 | `02-pdal-ingest` | Ingesting LAS files into patch tables with PDAL |
-| 03 | `03-patch-queries` | Patch statistics, filtering, and intersection queries |
-| 04 | `04-full-workflow` | End-to-end: file → patches → query |
+| 02 | `02-pdal-ingest` | Planned | Ingesting LAS files into patch tables with PDAL |
+| 03 | `03-patch-queries` | Planned | Patch statistics, filtering, and intersection queries |
+| 04 | `04-full-workflow` | Planned | End-to-end: file → patches → query |
+
+Only `examples/01-extension-setup/` currently exists as an executable pattern. Patterns 02–04 are roadmap entries, not implemented directories; they will be promoted only after their files and validation evidence are added.
 
 ## Repository layout
 
@@ -55,7 +57,7 @@ pgpointcloud-cookbook/
 
 ## Roadmap
 
-- Add a PDAL-driven ingest pattern with a small, redistributable test fixture.
+- Implement the planned PDAL-driven ingest pattern with a small, redistributable test fixture.
 - Add patch-query examples validated against an installed pgPointCloud database.
 - Keep SQL point construction out of the examples until the known PC_MakePoint defect is independently resolved.
 
