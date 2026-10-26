@@ -15,7 +15,7 @@ A **pgPointCloud cookbook** for point-cloud patches in Postgres, PDAL ingest. Pa
 
 ## Repository role and status
 
-**Status:** Active, public — first executable verification pattern written. CI validates the SQL contract and documentation; live extension availability must still be verified against the target database.
+**Status:** Active, public — first executable verification pattern written. CI validates SQL/documentation contracts and the safe `verify.sh` runner; live extension availability must still be verified against the target database.
 
 **What this repository is:** pgPointCloud patterns — see the table below.
 
@@ -46,7 +46,7 @@ Engineers who store LiDAR in Postgres and query it as patches.
 
 ```text
 pgpointcloud-cookbook/
-├── examples/01-extension-setup/  # executable SQL verification pattern
+├── examples/01-extension-setup/  # SQL verification + safe psql runner
 ├── tests/             # static SQL/documentation contracts
 ├── .github/workflows/ # CI
 ├── README.md
