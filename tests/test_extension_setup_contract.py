@@ -10,7 +10,7 @@ class ExtensionSetupContractTests(unittest.TestCase):
         readme = (EXAMPLE / "README.md").read_text(encoding="utf-8")
         self.assertIn("PDAL", readme)
         self.assertIn("does not prove the extensions exist", readme)
-        self.assertIn("verify-extensions.sql", readme)
+        self.assertIn("verify-extensions.sql", (EXAMPLE / "verify.sh").read_text(encoding="utf-8"))
 
     def test_runner_is_fail_fast_and_uses_libpq_environment_without_printing_secrets(self):
         script = (EXAMPLE / "verify.sh").read_text(encoding="utf-8")
