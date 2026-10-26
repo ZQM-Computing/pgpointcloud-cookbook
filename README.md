@@ -15,7 +15,7 @@ A **pgPointCloud cookbook** for point-cloud patches in Postgres, PDAL ingest. Pa
 
 ## Repository role and status
 
-**Status:** Active, public — seeding. Pattern passes land in follow-up work from fleet-verified setups; the tables below list what is planned, not what is already written.
+**Status:** Active, public — first executable verification pattern written. CI validates the SQL contract and documentation; live extension availability must still be verified against the target database.
 
 **What this repository is:** pgPointCloud patterns — see the table below.
 
@@ -33,11 +33,11 @@ Engineers who store LiDAR in Postgres and query it as patches.
 - PDAL for ingest (see pdal-cookbook)
 - Postgres with PostGIS
 
-## Patterns (planned)
+## Patterns
 
-| # | Example | What it will demonstrate |
-|---|---------|--------------------------|
-| 01 | `01-extension-setup` | Enabling the extension and verifying it loads |
+| # | Example | Status | What it demonstrates |
+|---|---------|--------|---------------------|
+| 01 | [01-extension-setup](examples/01-extension-setup/README.md) | Written; live DB check required | Verify PostGIS and pgPointCloud are installed and report their exact versions |
 | 02 | `02-pdal-ingest` | Ingesting LAS files into patch tables with PDAL |
 | 03 | `03-patch-queries` | Patch statistics, filtering, and intersection queries |
 | 04 | `04-full-workflow` | End-to-end: file → patches → query |
@@ -46,15 +46,18 @@ Engineers who store LiDAR in Postgres and query it as patches.
 
 ```text
 pgpointcloud-cookbook/
-├── examples/          # pattern passes, landing in follow-up work
+├── examples/01-extension-setup/  # executable SQL verification pattern
+├── tests/             # static SQL/documentation contracts
+├── .github/workflows/ # CI
 ├── README.md
 └── LICENSE
 ```
 
 ## Roadmap
 
-- First pattern pass: the first two table rows
-- Second pass: the remaining rows, from fleet-verified setups
+- Add a PDAL-driven ingest pattern with a small, redistributable test fixture.
+- Add patch-query examples validated against an installed pgPointCloud database.
+- Keep SQL point construction out of the examples until the known PC_MakePoint defect is independently resolved.
 
 ## Contributing
 
